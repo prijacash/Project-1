@@ -3,7 +3,9 @@
 Project 1
 
 Features needed
-- 
+- Level Recognition
+- Different Arenas
+- Luck depending on attack
 
 
 MVP
