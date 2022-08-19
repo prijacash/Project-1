@@ -29,3 +29,9 @@ Stretch Goals
 - add music after win
 - make characters move when they attack
 - add sound effects when they win
+- use player vs player
+
+Roadblocks 
+- having a fun gameplay that feels competitive with pc
+- using a random array of attack levels that makes it feel like a game
+- add a feature to be stunned/dizzy too allow a better dynamic 
