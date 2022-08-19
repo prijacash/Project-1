@@ -4,7 +4,7 @@ WireFrame - Pokemon Battle
 
 Jimmy is walking through the deserted Hills of Playtans.  He must travel through this area to get to the Arctic Mountains where his girlfriend Julieann is held.  He is confronted by Brian, the Bully of the North.  Brian will not allow Jimmy to pass unless he beats him in a Pokemon Battle!! He must use this attacks to defeat Brian.  The first to lose all their health, perishes.  The last one standing, is the winner. - LET's BATTLE!
 
-![wireframe](https://github.com/prijacash/Project-1/blob/main/Pokemon%20battle.png)
+![wireframe](/media/pokemon_wireframe.png)
 
 Tech Needed
 - Javascript, CSS, HTML

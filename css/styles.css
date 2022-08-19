@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
+body {
+    color: blue;
+    justify-content: center;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
+    margin: 0 auto;
+    font-family: 'Silkscreen', cursive;
+
+
+}
+
+h1{
+    font-size: 40px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.centered {
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.battleground {
+    width: 77vw;
+    height: 68vh;
+    margin: 0 auto;
+    background-image: url('../media/battle_background.jpeg');
+    background-repeat: no-repeat;
+    display: grid;
+    grid-template-rows: 1fr 5fr 1fr;
+}
+
+.attackContainer {
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 60px;
+    font-size: 30px;
+}
+
+.displayMessage {
+    margin: 0 auto;
+    font-size: 30px;
+    height: 120px;
+}
+
+.img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.cpuRow {
+    width: 100%;
+    height: 100%;
+    color: white;
+    justify-content: right;
+}
+
+.arenaRow {
+    width: 100%;
+    height: 100%;
+    color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+}
+
+.playerRow {
+    width: 100%;
+    height: 100%;
+    color: white;
+    justify-content: left;
+    align-items: flex-end;
+}
+
+.bottom {
+    justify-content: flex-end;
+}
+
+.attack {
+    border: ;
+}

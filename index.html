@@ -1,11 +1,48 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="css/styles.css">
     </head>
 
     <body>
-        <h1>Pokemon Battle!</h1>
-        <script src="./script"></script>
+        <section class="centered">
+            <h1>Pokemon Battle!</h1>
+
+            <section class="battleground">
+
+                <!-- top row     -->
+                <div class="cpuRow">
+                    <div class="name" id="cpuName">cpu name</div>
+                    <div class="health" id="player1Health">health</div>
+                </div>
+
+                <!-- characters -->
+                <div class="arenaRow">
+                    <div>player</div>
+                    <div>emptyspace in between</div>
+                    <div>computer</div>
+                </div>
+
+                <!-- bottom row -->
+                <div class="playerRow">
+                    <section class="bottom">
+                        <div class="name" id="player1Name">name</div>
+                        <div class="health" id="player1Health">health</div>
+                    </section>
+                </div>
+            </section>
+
+            <div class="attackContainer">
+                <div class="attack attack1">Attack 1</div>
+                <div class="attack attack2">Attack 2</div>
+                <div class="attack attack3">Attack 3</div>
+            </div>
+
+            <div class="displayMessage">
+                <p>Hey Jimmy,</p>
+                <p>You must battle Brian, the Bully!</p>
+            </div>
+        </section>
+        <script src="scripts/script.js"></script>
     </body>
 </html>
