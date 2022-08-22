@@ -7,13 +7,15 @@ body {
     grid-template-columns: 1fr;
     margin: 0 auto;
     font-family: 'Silkscreen', cursive;
+}
 
-
+.main {
+    justify-content: center;
 }
 
 h1{
     font-size: 40px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
 }
 .centered {
     justify-content: center;
@@ -22,11 +24,11 @@ h1{
 }
 
 .battleground {
-    width: 77vw;
+    width: 70vw;
     height: 68vh;
     margin: 0 auto;
     background-image: url('../media/battle_background.jpeg');
-    background-repeat: no-repeat;
+    background-size: cover;
     display: grid;
     grid-template-rows: 1fr 5fr 1fr;
 }
@@ -37,25 +39,31 @@ h1{
     grid-template-columns: 1fr 1fr 1fr;
     height: 60px;
     font-size: 30px;
+    width: 70vw;
 }
 
 .displayMessage {
     margin: 0 auto;
     font-size: 30px;
     height: 120px;
+    text-align: center;
+    color: blue
 }
 
 .img {
     height: 100%;
     width: 100%;
-    object-fit: contain;
+    object-fit: cover;
+    
+
 }
 
 .cpuRow {
     width: 100%;
     height: 100%;
     color: white;
-    justify-content: right;
+    text-align: right;
+
 }
 
 .arenaRow {
@@ -65,6 +73,7 @@ h1{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
+    text-align: center;
 }
 
 .playerRow {

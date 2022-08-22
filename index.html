@@ -5,42 +5,38 @@
     </head>
 
     <body>
-        <section class="centered">
+        <section class="main">
             <h1>Pokemon Battle!</h1>
 
             <section class="battleground">
 
                 <!-- top row     -->
                 <div class="cpuRow">
-                    <div class="name" id="cpuName">cpu name</div>
-                    <div class="health" id="player1Health">health</div>
+                    <div class="name" id="cpuHealth">CPU HEALTH</div>>
                 </div>
 
                 <!-- characters -->
                 <div class="arenaRow">
-                    <div>player</div>
+                    <div><img src="./media/charizard.png" width="250px"></div>
                     <div>emptyspace in between</div>
-                    <div>computer</div>
+                    <div><img src="./media/snorlax.png" width="250px"></div>
                 </div>
 
                 <!-- bottom row -->
                 <div class="playerRow">
                     <section class="bottom">
-                        <div class="name" id="player1Name">name</div>
-                        <div class="health" id="player1Health">health</div>
+                        <div class="name" id="playerHealth">PLAYER HEALTH</div>
                     </section>
                 </div>
             </section>
 
             <div class="attackContainer">
-                <div class="attack attack1">Attack 1</div>
-                <div class="attack attack2">Attack 2</div>
-                <div class="attack attack3">Attack 3</div>
+                <input type="button" class="attack attack1">Attack 1</button>
+                <input type="button" class="attack attack2">Attack 2</button>
+                <input type="button" class="attack attack3">Attack 3</button>
             </div>
 
             <div class="displayMessage">
-                <p>Hey Jimmy,</p>
-                <p>You must battle Brian, the Bully!</p>
             </div>
         </section>
         <script src="scripts/script.js"></script>
