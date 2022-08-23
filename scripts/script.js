@@ -10,6 +10,7 @@ window.addEventListener("DOMContentLoaded", () => {
     let attack2 = document.querySelector('.attack2')
     let attack3 = document.querySelector('.attack3')
     let displayMessage = document.querySelector('.displayMessage')
+    let attackUsed = document.querySelector('#attackUsed')
     
 
     // display initial message
@@ -33,21 +34,15 @@ window.addEventListener("DOMContentLoaded", () => {
             attacks: [
                 {
                     attackName: "Ember Fire",
-                    damage: randomNum(60,30),
-                    available:  10,
-                    remaining: 10,
+                    damage: 60,
                 },
                 {
                     attackName: "Fire Spin",
-                    damage: randomNum(45,12),
-                    available:  10,
-                    remaining: 10, 
+                    damage: 45,
                 },
                 {
                     attackName: "Blast Burn",
-                    damage: randomNum(30,10),
-                    available:  10,
-                    remaining: 10,
+                    damage: 30,
                 },
             ],
         },
@@ -62,21 +57,15 @@ window.addEventListener("DOMContentLoaded", () => {
             attacks: [
                 {
                     attackName: "Earthquake",
-                    damage: randomNum(60,30),
-                    available:  10,
-                    remaining: 10,
+                    damage: 60,
                 },
                 {
                     attackName: "Heavy Slam",
-                    damage: randomNum(45,12),
-                    available:  10,
-                    remaining: 10,  
+                    damage: 35,
                 },
                 {
                     attackName: "Skull Bash",
-                    damage: randomNum(30,10),
-                    available:  10,
-                    remaining: 10,
+                    damage: 13,
                 },
             ],
                 
@@ -92,13 +81,14 @@ window.addEventListener("DOMContentLoaded", () => {
     cpuHealth.innerText = `CPU ${cpu.name} Health (${cpu.hp.current} / ${cpu.hp.total})`
 
     // FUNCTION: attackClicked() ---> starts
-    
-    attack1.addEventListener("click", attackClick)
-    attack2.addEventListener("click", attackClick)
-    attack3.addEventListener("click", attackClick)
+
+    attack1.addEventListener("click", attackClicked)
+    attack2.addEventListener("click", attackClicked)
+    attack3.addEventListener("click", attackClicked)
 
 
-    function attackClick(event) {
+
+    function attackClicked(event) {
         let gameCheck = event.target
 
             // 1. check turn. decide who's turn it is.. player1 even, cpu odd
@@ -107,21 +97,37 @@ window.addEventListener("DOMContentLoaded", () => {
                 displayMessage.innerText = "Player 1's turn"
                 if (player1.hp.current > 0) { // which buttons being clicked, based the same button action
                     if (attack1) {
-                        cpu.hp.current =  cpu.hp.current - player1.attacks[0].damage               
+                        cpu.hp.current -= player1.attacks[0].damage
+                        attackUsed.innerText = `Charizard used ${player1.attacks[0].attackName}`
+                        cpuHealth.innerText = `CPU ${cpu.name} Health (${cpu.hp.current} / ${cpu.hp.total})`
+                        if (cpu.hp.current < 0) {
+                            // announce winner
+                            gameOver()
+                        }
                     } else if (attack2) {
-                        cpu.hp.current = cpu.hp.current - player1.attacks[1].damage
+                        cpu.hp.current -= player1.attacks[1].damage
+                        attackUsed.innerText = `Charizard used ${player1.attacks[1].attackName}`
+                        cpuHealth.innerText = `CPU ${cpu.name} Health (${cpu.hp.current} / ${cpu.hp.total})`
                     } else if (attack3) {
-                        cpu.hp.current = cpu.hp.current - player1.attacks[2].damage
+                        cpu.hp.current -= player1.attacks[2].damage
+                        attackUsed.innerText = `Charizard used ${player1.attacks[2].attackName}`
+                        cpuHealth.innerText = `CPU ${cpu.name} Health (${cpu.hp.current} / ${cpu.hp.total})`
                     }
-                    // reassign the HP
-         
+                    
                 } 
-
+                
                 turnNum++
+                
             } else {
                 gameCheck.classList.add('cpu')
                 displayMessage.innerText = "CPU's turn"
+                    if (cpu.hp.current > 0) {
+                        player1.current -= cpu.attacks[randomNum].damage
+                        
+                    }
+                
                 turnNum++
+
             }
 
             // 2. function to attack
@@ -141,14 +147,17 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    // random number generator for attacks
-    function randomNum(max, min){
-    if (min === undefined || min === '' || min === null) {
-        min = 0
-    }
-    return Math.floor(Math.random() * (max-min) + min);
-    randomNum()
-    }
+    // random number generator for attacks between 1 and 3
+    randomNum = Math.floor(Math.random() * 2) // 0-2
+    console.log(randomNum)
+
+    // function randomNum(max, min){
+    // if (min === undefined || min === '' || min === null) {
+    //     min = 0
+    // }
+    // return Math.floor(Math.random() * (max-min) + min);
+    // randomNum()
+    // }
 
 
     // FUNCTION: gameOver()
