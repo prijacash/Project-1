@@ -5,7 +5,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // Capture DOM Elements from page to store as variables
     let cpuHealth = document.querySelector('#cpuHealth')
-    let playerHealth = document.querySelector('#playerHealth')
+    let player1Health = document.querySelector('#playerHealth')
     let attack1 = document.querySelector('.attack1')
     let attack2 = document.querySelector('.attack2')
     let attack3 = document.querySelector('.attack3')
@@ -17,7 +17,6 @@ window.addEventListener("DOMContentLoaded", () => {
     displayMessage.innerText = 'Player 1, goes first to attack'
 
     // SCOREBOARD
-
     let turnNum = 0
     let player1, cpu; 
 
@@ -30,7 +29,6 @@ window.addEventListener("DOMContentLoaded", () => {
                 current: 500,
                 total: 500
                 }, 
-           
             attacks: [
                 {
                     attackName: "Ember Fire",
@@ -81,16 +79,12 @@ window.addEventListener("DOMContentLoaded", () => {
     cpuHealth.innerText = `CPU ${cpu.name} Health (${cpu.hp.current} / ${cpu.hp.total})`
 
     // FUNCTION: attackClicked() ---> starts
-
     attack1.addEventListener("click", attackClicked)
     attack2.addEventListener("click", attackClicked)
     attack3.addEventListener("click", attackClicked)
 
-
-
     function attackClicked(event) {
         let gameCheck = event.target
-
             // 1. check turn. decide who's turn it is.. player1 even, cpu odd
             if (turnNum % 2 === 0) {
                 gameCheck.classList.add('player1')
@@ -100,10 +94,6 @@ window.addEventListener("DOMContentLoaded", () => {
                         cpu.hp.current -= player1.attacks[0].damage
                         attackUsed.innerText = `Charizard used ${player1.attacks[0].attackName}`
                         cpuHealth.innerText = `CPU ${cpu.name} Health (${cpu.hp.current} / ${cpu.hp.total})`
-                        if (cpu.hp.current < 0) {
-                            // announce winner
-                            gameOver()
-                        }
                     } else if (attack2) {
                         cpu.hp.current -= player1.attacks[1].damage
                         attackUsed.innerText = `Charizard used ${player1.attacks[1].attackName}`
@@ -113,61 +103,42 @@ window.addEventListener("DOMContentLoaded", () => {
                         attackUsed.innerText = `Charizard used ${player1.attacks[2].attackName}`
                         cpuHealth.innerText = `CPU ${cpu.name} Health (${cpu.hp.current} / ${cpu.hp.total})`
                     }
-                    
-                } 
-                
-                turnNum++
-                
-            } else {
+                    turnNum++
+                } else {
+                    gameOver('Player 1')  
+                }                        
+            } 
+
+        // while loop to play after 2.5 secs initial after click
+        setTimeout(() => {
+            while (turnNum % 2 !== 0) {
                 gameCheck.classList.add('cpu')
                 displayMessage.innerText = "CPU's turn"
+                let random = Math.floor(Math.random() * 3) // 0-2
                     if (cpu.hp.current > 0) {
-                        player1.current -= cpu.attacks[randomNum].damage
-                        
-                    }
-                
-                turnNum++
-
+                        player1.hp.current -= cpu.attacks[random].damage
+                        attackUsed.innerText = `Snorlax used ${cpu.attacks[random].attackName}`
+                        player1Health.innerText = `Player ${player1.name} Health (${player1.hp.current} / ${player1.hp.total})`
+                        turnNum++
+                    } else {
+                        gameOver('CPU')       
+                }
             }
-
-            // 2. function to attack
-            // first conditional check HP > 0
-    
-
- 
-            // gameOver()
-            // console.log('this game is over)
-            
-            // 3. take HP of that guy
-            
-            // (total HP combatant) - (total attack points from attacker)
-            // 4. update turn
-            // repeat go back to one
+          }, "2500")
 
     }
-
-
-    // random number generator for attacks between 1 and 3
-    randomNum = Math.floor(Math.random() * 2) // 0-2
-    console.log(randomNum)
-
-    // function randomNum(max, min){
-    // if (min === undefined || min === '' || min === null) {
-    //     min = 0
-    // }
-    // return Math.floor(Math.random() * (max-min) + min);
-    // randomNum()
-    // }
-
+    
+    // FUNCTION: set timeout
+    // setTimeout(() => {
+    //     console.log("Delayed for 1 second.");
+    //   }, "1000")
 
     // FUNCTION: gameOver()
-    function gameOver () {
-
+    function gameOver(user) {
+        displayMessage.innerText = `${user} has won.` 
+        attackUsed.innerText = `Play Again`// prompt to dialog
     }
-    //// check to see if there is a winner on each turn
-    //// if player/cpu has won run stopGame()
 
-    // FUNCTION: stopGame() --> doesnt allow further game play
 })
 
 
