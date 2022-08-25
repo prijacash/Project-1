@@ -94,7 +94,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     function attackClicked(event) {
         let gameCheck = event.target
-        console.log(gameCheck)
+        
             // 1. check turn. decide who's turn it is.. player1 even, cpu odd
             if (turnNum % 2 === 0) {
                 gameCheck.classList.add('player1')
@@ -145,12 +145,10 @@ window.addEventListener("DOMContentLoaded", () => {
             function gameOver() {
                 if (cpu.hp.current <= 0) {
                     displayMessage.innerText = `(Player1) Jimmy, you have won, you can now go find Julie Ann at the Arctic Mountains`
-                    console.log(`player 1 won`)
                     victory.play()
                 }
                 if (player1.hp.current <= 0) {
                     displayMessage.innerText = `(CPU) Brian the Bully has won. You cannot pass! Try again`
-                    console.log(`player 1 won`)
                 }
             }
 
