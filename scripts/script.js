@@ -85,27 +85,28 @@ window.addEventListener("DOMContentLoaded", () => {
 
     function attackClicked(event) {
         let gameCheck = event.target
+        console.log(gameCheck)
             // 1. check turn. decide who's turn it is.. player1 even, cpu odd
             if (turnNum % 2 === 0) {
                 gameCheck.classList.add('player1')
                 displayMessage.innerText = "Player 1's turn"
                 if (player1.hp.current > 0) { // which buttons being clicked, based the same button action
-                    if (attack1) {
+                    if (gameCheck.classList.contains('attack1')) {
                         cpu.hp.current -= player1.attacks[0].damage
                         attackUsed.innerText = `Charizard used ${player1.attacks[0].attackName}`
                         cpuHealth.innerText = `CPU ${cpu.name} Health (${cpu.hp.current} / ${cpu.hp.total})`
-                    } else if (attack2) {
+                    } else if (gameCheck.classList.contains('attack2')) {
                         cpu.hp.current -= player1.attacks[1].damage
                         attackUsed.innerText = `Charizard used ${player1.attacks[1].attackName}`
                         cpuHealth.innerText = `CPU ${cpu.name} Health (${cpu.hp.current} / ${cpu.hp.total})`
-                    } else if (attack3) {
+                    } else if (gameCheck.classList.contains('attack3')) {
                         cpu.hp.current -= player1.attacks[2].damage
                         attackUsed.innerText = `Charizard used ${player1.attacks[2].attackName}`
                         cpuHealth.innerText = `CPU ${cpu.name} Health (${cpu.hp.current} / ${cpu.hp.total})`
                     }
                     turnNum++
                 } else {
-                    gameOver('Player 1')  
+                    gameOver()  
                 }                        
             } 
 
@@ -121,11 +122,23 @@ window.addEventListener("DOMContentLoaded", () => {
                         player1Health.innerText = `Player ${player1.name} Health (${player1.hp.current} / ${player1.hp.total})`
                         turnNum++
                     } else {
-                        gameOver('CPU')       
+                        gameOver()   
+                        turnNum++
                 }
             }
           }, "2500")
 
+          // FUNCTION: gameOver()
+          function gameOver() {
+              if (cpu.hp.current <= 0) {
+                  displayMessage.innerText = `Player 1 has won`
+                  console.log(`player 1 won`)
+              }
+              if (player1.hp.current <= 0) {
+                  displayMessage.innerText = `CPU has one`
+                  console.log(`player 1 won`)
+              }
+          }
     }
     
     // FUNCTION: set timeout
@@ -133,12 +146,6 @@ window.addEventListener("DOMContentLoaded", () => {
     //     console.log("Delayed for 1 second.");
     //   }, "1000")
 
-    // FUNCTION: gameOver()
-    function gameOver(user) {
-        displayMessage.innerText = `${user} has won.` 
-        attackUsed.innerText = `Play Again`// prompt to dialog
-    }
 
 })
-
 
