@@ -1,5 +1,3 @@
-console.log('test')
-
 // VARIABLES
 window.addEventListener("DOMContentLoaded", () => {
 
@@ -11,11 +9,22 @@ window.addEventListener("DOMContentLoaded", () => {
     let attack3 = document.querySelector('.attack3')
     let displayMessage = document.querySelector('.displayMessage')
     let attackUsed = document.querySelector('#attackUsed')
-    
+    let playMusic1 = document.querySelector('.playmusic')
+    let resetBtn = document.querySelector('.reset')
+
 
     // display initial message
-    displayMessage.innerText = 'Player 1, goes first to attack'
+    displayMessage.innerText = "(Player1) Jimmy, you must use Charizard to defeat Snorlax & Brian, the Bully."
 
+    // sound effects for attacks & victory
+    let ember = new Audio ('https://vgmsite.com/soundtracks/pokemon-sfx-gen-3-attack-moves-rse-fr-lg/ohkyaxzeqo/Ember.mp3')
+    let fire = new Audio ('https://vgmsite.com/soundtracks/pokemon-sfx-gen-3-attack-moves-rse-fr-lg/yksrrkonhz/Fire%20Spin.mp3')
+    let blast = new Audio ('https://vgmsite.com/soundtracks/pokemon-sfx-gen-3-attack-moves-rse-fr-lg/jeqkuorvbi/Blast%20Burn.mp3')    
+    let slam = new Audio ('https://vgmsite.com/soundtracks/pokemon-sfx-gen-3-attack-moves-rse-fr-lg/tvfuhrhluz/Skull%20Bash%20part%201.mp3')
+    let victory = new Audio ('https://vgmsite.com/soundtracks/pokemon-gameboy-sound-collection/rkkmtqon/116-victory%20%28vs%20trainer%29.mp3')
+    
+    let music = new Audio ('https://vgmsite.com/soundtracks/pokemon-gameboy-sound-collection/gbhogmtx/107-battle%20%28vs%20wild%20pokemon%29.mp3')
+    
     // SCOREBOARD
     let turnNum = 0
     let player1, cpu; 
@@ -95,14 +104,17 @@ window.addEventListener("DOMContentLoaded", () => {
                         cpu.hp.current -= player1.attacks[0].damage
                         attackUsed.innerText = `Charizard used ${player1.attacks[0].attackName}`
                         cpuHealth.innerText = `CPU ${cpu.name} Health (${cpu.hp.current} / ${cpu.hp.total})`
+                        ember.play()
                     } else if (gameCheck.classList.contains('attack2')) {
                         cpu.hp.current -= player1.attacks[1].damage
                         attackUsed.innerText = `Charizard used ${player1.attacks[1].attackName}`
                         cpuHealth.innerText = `CPU ${cpu.name} Health (${cpu.hp.current} / ${cpu.hp.total})`
+                        fire.play()
                     } else if (gameCheck.classList.contains('attack3')) {
                         cpu.hp.current -= player1.attacks[2].damage
                         attackUsed.innerText = `Charizard used ${player1.attacks[2].attackName}`
                         cpuHealth.innerText = `CPU ${cpu.name} Health (${cpu.hp.current} / ${cpu.hp.total})`
+                        blast.play()
                     }
                     turnNum++
                 } else {
@@ -110,42 +122,66 @@ window.addEventListener("DOMContentLoaded", () => {
                 }                        
             } 
 
-        // while loop to play after 2.5 secs initial after click
-        setTimeout(() => {
-            while (turnNum % 2 !== 0) {
-                gameCheck.classList.add('cpu')
-                displayMessage.innerText = "CPU's turn"
-                let random = Math.floor(Math.random() * 3) // 0-2
-                    if (cpu.hp.current > 0) {
-                        player1.hp.current -= cpu.attacks[random].damage
-                        attackUsed.innerText = `Snorlax used ${cpu.attacks[random].attackName}`
-                        player1Health.innerText = `Player ${player1.name} Health (${player1.hp.current} / ${player1.hp.total})`
-                        turnNum++
-                    } else {
-                        gameOver()   
-                        turnNum++
+            // while loop to play after 2.5 secs initial after click
+            setTimeout(() => {
+                while (turnNum % 2 !== 0) {
+                    gameCheck.classList.add('cpu')
+                    displayMessage.innerText = "CPU's turn"
+                    let random = Math.floor(Math.random() * 3) // 0-2
+                        if (cpu.hp.current > 0) {
+                            player1.hp.current -= cpu.attacks[random].damage
+                            attackUsed.innerText = `Snorlax used ${cpu.attacks[random].attackName}`
+                            player1Health.innerText = `Player ${player1.name} Health (${player1.hp.current} / ${player1.hp.total})`
+                            slam.play()
+                            turnNum++
+                        } else {
+                            gameOver()   
+                            turnNum++
+                    }
+                }
+            }, "2500")
+
+            // FUNCTION: gameOver()
+            function gameOver() {
+                if (cpu.hp.current <= 0) {
+                    displayMessage.innerText = `(Player1) Jimmy, you have won, you can now go find Julie Ann at the Arctic Mountains`
+                    console.log(`player 1 won`)
+                    victory.play()
+                }
+                if (player1.hp.current <= 0) {
+                    displayMessage.innerText = `(CPU) Brian the Bully has won. You cannot pass! Try again`
+                    console.log(`player 1 won`)
                 }
             }
-          }, "2500")
 
-          // FUNCTION: gameOver()
-          function gameOver() {
-              if (cpu.hp.current <= 0) {
-                  displayMessage.innerText = `Player 1 has won`
-                  console.log(`player 1 won`)
-              }
-              if (player1.hp.current <= 0) {
-                  displayMessage.innerText = `CPU has one`
-                  console.log(`player 1 won`)
-              }
-          }
+            // adding reset
+            // FUNCTION: resetGameboard() --> add event listener to #reset button on click
+            // resetBtn.addEventListener("click", function resetGame() {
+            
+            //     // update player turn message as if game has re-started; player x plays first
+            //     displayMessage.innerText = "(Player1) Jimmy, you must use Charizard to defeat Snorlax & Brian, the Bully."
+            //     attackUsed.innerText = ""
+
+            //     // re-set all starting variables to initial values
+            //     // SCOREBOARD
+            //     let turnNum = 0
+            //     let player1, cpu; 
+
+            // })
+
+
     }
     
-    // FUNCTION: set timeout
-    // setTimeout(() => {
-    //     console.log("Delayed for 1 second.");
-    //   }, "1000")
+    // adding music play
+    // playMusic1.addEventListener("click", playMusic)
+
+    // function playMusic(event){
+    //     let playmusic = event.target
+    //     console.log(playmusic)
+    //     if (playmusic.classList.contains(playMusic1)){
+    //         music.play()
+    //     }
+    // }
 
 
 })
-
