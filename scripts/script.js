@@ -190,5 +190,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 player1Health.innerText = `Player 1 ${player1.name} Health (${player1.hp.current} / ${player1.hp.total})`
                 cpuHealth.innerText = `CPU ${cpu.name} Health (${cpu.hp.current} / ${cpu.hp.total})`
 
+                victory.pause()
+
             })
 })
