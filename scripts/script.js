@@ -9,7 +9,9 @@ window.addEventListener("DOMContentLoaded", () => {
     let attack3 = document.querySelector('.attack3')
     let displayMessage = document.querySelector('.displayMessage')
     let attackUsed = document.querySelector('#attackUsed')
+    
     let playMusic1 = document.querySelector('.playmusic')
+    let pauseMusic1 = document.querySelector('.pausemusic')
     let resetBtn = document.querySelector('.reset')
 
 
@@ -25,6 +27,21 @@ window.addEventListener("DOMContentLoaded", () => {
     
     let music = new Audio ('https://vgmsite.com/soundtracks/pokemon-gameboy-sound-collection/gbhogmtx/107-battle%20%28vs%20wild%20pokemon%29.mp3')
     
+
+
+    // adding music play
+    playMusic1.addEventListener("click", playMusic)
+    function playMusic(){
+            music.play() 
+    }
+
+    // pause music play
+    pauseMusic1.addEventListener("click", pauseMusic)
+    function pauseMusic(){
+            music.pause() 
+    }
+
+
     // SCOREBOARD
     let turnNum = 0
     let player1, cpu; 
@@ -84,7 +101,7 @@ window.addEventListener("DOMContentLoaded", () => {
     cpu = characters[1]
 
     // display initial health bars
-    playerHealth.innerText = `Player 1 ${player1.name} Health (${player1.hp.current} / ${player1.hp.total})`
+    player1Health.innerText = `Player 1 ${player1.name} Health (${player1.hp.current} / ${player1.hp.total})`
     cpuHealth.innerText = `CPU ${cpu.name} Health (${cpu.hp.current} / ${cpu.hp.total})`
 
     // FUNCTION: attackClicked() ---> starts
@@ -94,7 +111,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     function attackClicked(event) {
         let gameCheck = event.target
-        
+
             // 1. check turn. decide who's turn it is.. player1 even, cpu odd
             if (turnNum % 2 === 0) {
                 gameCheck.classList.add('player1')
@@ -151,35 +168,27 @@ window.addEventListener("DOMContentLoaded", () => {
                     displayMessage.innerText = `(CPU) Brian the Bully has won. You cannot pass! Try again`
                 }
             }
-
-            // adding reset
-            // FUNCTION: resetGameboard() --> add event listener to #reset button on click
-            // resetBtn.addEventListener("click", function resetGame() {
-            
-            //     // update player turn message as if game has re-started; player x plays first
-            //     displayMessage.innerText = "(Player1) Jimmy, you must use Charizard to defeat Snorlax & Brian, the Bully."
-            //     attackUsed.innerText = ""
-
-            //     // re-set all starting variables to initial values
-            //     // SCOREBOARD
-            //     let turnNum = 0
-            //     let player1, cpu; 
-
-            // })
-
-
     }
     
-    // adding music play
-    // playMusic1.addEventListener("click", playMusic)
+            // adding reset
+            // FUNCTION: resetGameboard() --> add event listener to #reset button on click
+            resetBtn.addEventListener("click", function resetGame(){
+                
+                // reset full HP
+                cpu.hp.current = 500
+                player1.hp.current = 500
+  
+                // update texts
+                displayMessage.innerText = "(Player1) Jimmy, you must use Charizard to defeat Snorlax & Brian, the Bully."
+                attackUsed.innerText = ""
 
-    // function playMusic(event){
-    //     let playmusic = event.target
-    //     console.log(playmusic)
-    //     if (playmusic.classList.contains(playMusic1)){
-    //         music.play()
-    //     }
-    // }
+                // re-set all starting variables to initial values
+                // SCOREBOARD
+                turnNum = 0
 
+                // update initial health bars
+                player1Health.innerText = `Player 1 ${player1.name} Health (${player1.hp.current} / ${player1.hp.total})`
+                cpuHealth.innerText = `CPU ${cpu.name} Health (${cpu.hp.current} / ${cpu.hp.total})`
 
+            })
 })
