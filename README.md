@@ -10,7 +10,7 @@ Jimmy is walking through the deserted Hills of Playtans.  He must travel through
 
 
 Tech Needed
-- Javascript, CSS, HTML
+- Javascript, CSS, HTML5, DOM-Manipulation Game
 
 MVP
 - Create Pokemon-like scenery
@@ -39,3 +39,22 @@ Roadblocks
 - having a fun gameplay that feels competitive with pc
 - using a random array of attack levels that makes it feel like a game
 - add a feature to be stunned/dizzy too allow a better dynamic 
+
+-----------------
+Post Project Reflections:
+- Had some difficulty figuring out how to delay CPU gameplay and where I should place that code. But I worked through that. 
+- Figured out how to randomize between 3 numbers. to randomize an attack from the data set.
+- Getting music and sound effects to play was fun
+- Instead of writing 3 long functions for a each attack click, I wanted to make the code cleaner, so I spent a few days trying to solve for that.  Previously I had an an eventlistner, but it would always pace through to only use the 1st attack, even though the 2nd and 3rd buttons were clicked.  I needed to put in the condition if a particular class contains a specific class/id.  After this was solved, the game worked.
+- While resetting, not only does the data reset, but I need to put the code to refresh the new data for the health.
+
+Sources:
+
+audio
+https://downloads.khinsider.com/game-soundtracks/album/pokemon-ten-years-of-pokemon
+
+data set
+https://codepen.io/hollyos/pen/QNRXYK
+
+
+https://www.w3schools.com/
