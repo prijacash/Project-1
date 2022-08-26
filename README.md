@@ -59,5 +59,7 @@ https://downloads.khinsider.com/game-soundtracks/album/pokemon-ten-years-of-poke
 data set
 https://codepen.io/hollyos/pen/QNRXYK
 
+pokemon sprites
+https://pokemondb.net/
 
 https://www.w3schools.com/
