@@ -47,7 +47,9 @@ Post Project Reflections:
 - Figured out how to randomize between 3 numbers. to randomize an attack from the data set.
 - Getting music and sound effects to play was fun
 - Instead of writing 3 long functions for a each attack click, I wanted to make the code cleaner, so I spent a few days trying to solve for that.  Previously I had an an eventlistner, but it would always pace through to only use the 1st attack, even though the 2nd and 3rd buttons were clicked.  I needed to put in the condition if a particular class contains a specific class/id.  After this was solved, the game worked.
-- While resetting, not only does the data reset, but I need to put the code to refresh the new data for the health.
+- While coding the reset function, I needed to put the code to refresh the display health on the screen, and not just the data in javascript. So I had to add more features.
+
+Maybe in the future I can get to some stretch goals to add more characters to select from.
 
 Sources:
 
