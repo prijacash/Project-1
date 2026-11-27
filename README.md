@@ -2,7 +2,7 @@
 
 A one-page, turn-based battle in the browser. You play Charizard. A CPU plays Snorlax. Built by Prija Cash in 2022 for the General Assembly Software Engineering Immersive.
 
-**Live site:** [prijacash.github.io/Project-1](https://prijacash.github.io/Project-1/)
+**Live site:** [prijacash.github.io/pokemon-battle](https://prijacash.github.io/pokemon-battle/)
 
 ## What it does
 
@@ -49,8 +49,8 @@ The project is those three files, opened in a browser. Sprites and audio are req
 ## Run it locally
 
 ```bash
-git clone https://github.com/prijacash/Project-1.git
-cd Project-1
+git clone https://github.com/prijacash/pokemon-battle.git
+cd pokemon-battle
 ```
 
 Open `index.html` in a browser. Stay online so the font, sprites, and audio can load. Click an attack, or Play Music, to start the sound.
